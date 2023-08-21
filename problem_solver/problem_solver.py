@@ -1,5 +1,6 @@
 import csv
 import random
+from tp import get_payload_time
 
 input_file = 'new_result.txt'
 input_csv = 'function_data_redis.csv'
@@ -133,16 +134,9 @@ for key in data.keys():
         values.append(round(data[key][3], 3))
         freq = int (data[key][0])
         in_size = float (data[key][-2])
-        delay = 1 
+        out_size = float (data[key][-1])
 
-        if in_size <= 4:
-            delay = 0.15
-        elif in_size <= 16:
-            delay = 0.22
-        elif in_size <= 64:
-            delay = 0.35
-        
-        cost = int (delay * freq * 2 *1000)
+        cost = int (get_payload_time(in_size)) + int (get_payload_time(out_size))
         costs.append(cost)
 
 
