@@ -1,6 +1,8 @@
 # Cost-Aware Instrumentation prototype
 
-This repository contains the source code of the cost-aware instrumentation prototype 
+This repository contains the source code of the cost-aware instrumentation prototype. 
+
+This prototype only supports `C` programming language at the moment. 
 
 
 ## requirements for using the framework
@@ -9,15 +11,21 @@ For benchmarking user space trace points you can use `LTTng-UST`.
 
 For profiling the application you can use `Uftrace` or `perf` or any other profiling tool that you can extract the execution time of each function. 
 
+For parsing static metrics, you should install `srcML` tool. 
+
+To run the scripts, you should have `Python 3` installed. 
+
 ## How to run the framework
 
 **Step 1:** 
 
 Extract the static metrics from the application source code by running the command below:
 
-`cd static_features/`
+```
+cd static_features/
 
-`python3 static_feature [PATH_TO_YOUR_PROJECT_DIRECTORY]`
+python3 static_feature [PATH_TO_YOUR_PROJECT_DIRECTORY]
+```
 
 The result of this command will be a JSON file containing all the static metrics extracted from the application. 
 
@@ -44,4 +52,11 @@ In this script you need to change the total available budget based on your peref
 You can also change the generic algorithm values based on your problem. 
 
 The result of this step will be a list of funciton that are suggested for initial instrumentation. 
+
+
+
+## Requirement for performance test 
+
+In order to do the performance test on your application, you can use `sysbench` to apply load on your system. 
+
 
